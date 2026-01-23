@@ -12,9 +12,10 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   background-color: var(--primary-color);
   color: var(--text-color);
+  min-width: 427px;
 }
 
 header {
@@ -47,12 +48,23 @@ hr {
 }
 
 a {
+  display: block;
   color: var(--accent-color);
   text-decoration: none;
 }
 
+a:hover {
+  transform: scale(1.05);
+}
+
 h2 {
-  margin-bottom: 0;
+  margin: 0;
+  margin-bottom: 0.3rem;
+}
+
+p {
+  margin: 0;
+  padding: 0.3rem;
 }
 
 #side-image {
@@ -79,4 +91,15 @@ h2 {
 
 #summary {
   letter-spacing: 0.05rem;
+}
+
+ul {
+  margin-top: 0.08rem;
+  margin-bottom: 0.15rem;
+}
+
+@media (max-width: 959px) {
+  #contact-info {
+    flex-direction: column;
+  }
 }
