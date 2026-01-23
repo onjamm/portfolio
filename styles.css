@@ -1,10 +1,20 @@
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+}
+
+:root {
+  --primary-color: #0a192f;
+  --secondary-color: #112240;
+  --text-color: #ccd6f6;
+  --accent-color: #64ffda;
 }
 
 body {
   margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
 header {
@@ -21,6 +31,7 @@ h1 {
   text-align: center;
   margin: 0;
   margin-top: 0.5rem;
+  font-size: 2.5rem;
 }
 
 main {
@@ -29,7 +40,8 @@ main {
 }
 
 a {
-  color: #fa3bf0;
+  color: var(--accent-color);
+  text-decoration: none;
 }
 
 h2 {
