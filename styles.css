@@ -37,6 +37,13 @@ h1 {
 main {
   width: 70%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  color: var(--text-color);
+  width: 100%;
 }
 
 a {
@@ -51,6 +58,7 @@ h2 {
 #side-image {
   position: relative;
 }
+
 #side-image img {
   width: 300px;
   height: 300px;
@@ -61,4 +69,14 @@ h2 {
   top: -13rem;
   border-radius: 50%;
   border: 0.5px solid gray;
+  display: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+#summary {
+  letter-spacing: 0.05rem;
 }
