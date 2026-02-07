@@ -9,6 +9,11 @@ document.getElementById("contact-form").onsubmit = () => {
   let meet = document.getElementById("meet").value;
   let html = document.getElementById("html");
   let text = document.getElementById("text");
+  let mailingList = document.getElementById("mailing-list").checked;
+  let linkedIn = document.getElementById("linked").value.trim();
+  let formats = document.getElementById("email-format");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   //first name validation
   if (!fname) {
@@ -23,8 +28,17 @@ document.getElementById("contact-form").onsubmit = () => {
   }
 
   //email validation
-  if (!email) {
+  if (mailingList && !emailRegex.test(email)) {
     document.getElementById("err-email").style.display = "block";
+    isValid = false;
+  } else if (email && !emailRegex.test(email)) {
+    document.getElementById("err-email").style.display = "block";
+    isValid = false;
+  }
+
+  //linkedIn validation
+  if (linkedIn && !linkedIn.startsWith("https://www.linkedin.com/in/")) {
+    document.getElementById("err-linked").style.display = "block";
     isValid = false;
   }
 
@@ -35,13 +49,48 @@ document.getElementById("contact-form").onsubmit = () => {
   }
 
   //format validation
-  if (!html.checked && !text.checked) {
-    document.getElementById("err-format").style.display = "block";
-    isValid = false;
-  }
+  //   if (!html.checked && !text.checked) {
+  //     document.getElementById("err-format").style.display = "block";
+  //     isValid = false;
+  //   }
 
   return isValid;
 };
+
+function toggleEmailFormat() {
+  let mailingList = document.getElementById("mailing-list").checked;
+  let formats = document.getElementById("email-format");
+
+  if (mailingList) {
+    formats.style.visibility = "visible";
+    formats.style.height = "auto";
+  } else {
+    formats.style.visibility = "hidden";
+    formats.style.height = "0";
+  }
+}
+
+function toggleOther() {
+  let meet = document.getElementById("meet").value;
+  let other = document.getElementById("other-field");
+
+  if (meet === "other") {
+    other.style.visibility = "visible";
+    other.style.height = "auto";
+  } else {
+    other.style.visibility = "hidden";
+    other.style.height = "0";
+  }
+}
+
+document
+  .getElementById("mailing-list")
+  .addEventListener("change", toggleEmailFormat);
+
+document.getElementById("meet").addEventListener("change", toggleOther);
+
+toggleEmailFormat();
+toggleOther();
 
 function clearErrors() {
   let errors = document.getElementsByClassName("err");

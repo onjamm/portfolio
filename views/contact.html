@@ -38,12 +38,15 @@
           </div>
           <div class="field">
             <label for="linked">LinkedIn URL</label>
+            <span class="err" id="err-linked"
+              >Valid LinkedIn URL is required</span
+            >
             <input type="text" id="linked" name="linked" />
           </div>
           <div class="field">
             <label for="email">Email Address</label>
-            <span class="err" id="err-email">Email is required</span>
-            <input type="email" id="email" name="email" />
+            <span class="err" id="err-email">Valid email is required</span>
+            <input type="text" id="email" name="email" />
           </div>
         </fieldset>
 
@@ -60,7 +63,7 @@
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="field">
+          <div class="field" id="other-field">
             <label for="other">Other (please specify)</label>
             <input type="text" id="other" name="other" />
           </div>
@@ -78,7 +81,7 @@
           </label>
         </fieldset>
 
-        <fieldset class="email-format">
+        <fieldset class="email-format" id="email-format">
           <label for="html">Choose an email format:</label>
           <label
             ><input type="radio" id="html" name="format" value="html" />
