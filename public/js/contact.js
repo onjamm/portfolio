@@ -57,6 +57,7 @@ document.getElementById("contact-form").onsubmit = () => {
   return isValid;
 };
 
+//toggles visibility of email format options on if mailing list is checked
 function toggleEmailFormat() {
   let mailingList = document.getElementById("mailing-list").checked;
   let formats = document.getElementById("email-format");
@@ -70,6 +71,7 @@ function toggleEmailFormat() {
   }
 }
 
+//toggles visibility of other field if "other" is selected for meet
 function toggleOther() {
   let meet = document.getElementById("meet").value;
   let other = document.getElementById("other-field");
@@ -83,15 +85,18 @@ function toggleOther() {
   }
 }
 
+//event listeners
 document
   .getElementById("mailing-list")
   .addEventListener("change", toggleEmailFormat);
 
 document.getElementById("meet").addEventListener("change", toggleOther);
 
+//initialize visibility when the page loads
 toggleEmailFormat();
 toggleOther();
 
+//function to clear all the error messages
 function clearErrors() {
   let errors = document.getElementsByClassName("err");
   for (let i = 0; i < errors.length; i++) {
