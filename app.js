@@ -11,10 +11,28 @@ const PORT = 3003;
 //Middleware that allows express to read the form data and store it in the req.body
 app.use(express.urlencoded({ extended: true }));
 
+//enable static file serving -- tells express where to look for static files
+app.use(express.static("public"));
+
 //Define a default "route" ('/)
 //req: contains information about the incoming request
 //res: allows us to send back a response to the client
 app.get("/", (req, res) => {
+  res.sendFile(`${import.meta.dirname}/views/resume.html`);
+});
+
+//admin route
+app.get("/admin", (req, res) => {
+  res.send(submissions);
+});
+
+//conrfirmation route
+app.get("/thank-you", (req, res) => {
+  res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+});
+
+//Contact form route
+app.get("/contact", (req, res) => {
   res.sendFile(`${import.meta.dirname}/views/contact.html`);
 });
 
@@ -41,19 +59,6 @@ app.post("/submit-submission", (req, res) => {
 
   res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
 });
-
-//admin route
-app.get("/admin", (req, res) => {
-  res.send(submissions);
-});
-
-//conrfirmation route
-app.get("/thank-you", (req, res) => {
-  res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
-});
-
-//enable static file serving -- tells express where to look for static files
-app.use(express.static("public"));
 
 //Start the server and listen on the specified port
 app.listen(PORT, () => {
