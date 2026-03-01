@@ -8,32 +8,35 @@ const app = express();
 //different than my others just in case we deploy on Digital Ocean
 const PORT = 3003;
 
+//enable static file serving -- tells express where to look for static files
+app.use(express.static("public"));
+
 //Middleware that allows express to read the form data and store it in the req.body
 app.use(express.urlencoded({ extended: true }));
 
-//enable static file serving -- tells express where to look for static files
-app.use(express.static("public"));
+// Set EJS as the view engine
+app.set("view engine", "ejs");
 
 //Define a default "route" ('/)
 //req: contains information about the incoming request
 //res: allows us to send back a response to the client
 app.get("/", (req, res) => {
-  res.sendFile(`${import.meta.dirname}/views/resume.html`);
+  res.render("resume");
 });
 
 //admin route
 app.get("/admin", (req, res) => {
-  res.send(submissions);
+  res.render("admin", { submissions });
 });
 
 //conrfirmation route
 app.get("/thank-you", (req, res) => {
-  res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+  res.render("confirmation");
 });
 
 //Contact form route
 app.get("/contact", (req, res) => {
-  res.sendFile(`${import.meta.dirname}/views/contact.html`);
+  res.render("contact");
 });
 
 //Create a temp array to store the guestbook submissions
@@ -57,7 +60,7 @@ app.post("/submit-submission", (req, res) => {
   //add submission object to submissions array
   submissions.push(submission);
 
-  res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+  res.render("confirmation", { submission });
 });
 
 //Start the server and listen on the specified port

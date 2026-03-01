@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #0a192f;
+  /* If I end up doing a card layout this secondary color will be the background of the card */
+  --secondary-color: #112240;
+  --text-color: #ccd6f6;
+  --accent-color: #64ffda;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 8vh;
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
