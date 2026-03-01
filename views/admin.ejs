@@ -4,11 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin</title>
+    <!-- Scripts -->
+    <script src="//code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="//cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.7/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="/styles/admin.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="icon" href="/imgs/fav.png" />
   </head>
+
   <body>
     <%- include('partials/navbar') %>
-    <h1>Admin Page</h1>
+    <hr />
+    <h1 id="page-title">Admin</h1>
+    <hr />
+    <% if (submissions.length > 0) { %>
+        <table id="order-table">
+            <thead>
+                <tr>
+                    <th>Name:</th>
+                    <th>Email:</th>
+                    <th>Meet:</th>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>LinkedIn</th>
+                    <th>Message:</th>
+                    <th>Mailing List</th>
+                    <th>Format</th>
+                    <th>timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% submissions.forEach(submission => { %>
+                    <tr>
+                        <td><%= submission.fname %> <%= submission.lname %></td>
+                        <td><%= submission.email%></td>
+                        <td><%= submission.meet %></td>
+                        <td><%= submission.job %></td>
+                        <td><%= submission.company %></td>
+                        <td><%= submission.linkedIn %></td>
+                        <td><%= submission.message %></td>
+                        <td><%= submission.mailingList %></td>
+                        <td><%= submission.format %></td>
+                        <td><%= submission.timestamp.toLocaleString() %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p id="no-submissions">No submissions to display yet!</p>
+    <% } %>
+    <script defer>
+        $(document).ready(function () {
+            new DataTable('#order-table');
+        });
+
+        //let table = new DataTable('#order-table');
+    </script>
   </body>
 </html>

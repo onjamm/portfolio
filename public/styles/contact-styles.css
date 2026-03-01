@@ -104,3 +104,10 @@ button {
   color: darkred;
   display: none;
 }
+
+a {
+  display: block;
+}
+a:hover {
+  transform: scale(1.05);
+}

@@ -12,6 +12,8 @@ document.getElementById("contact-form").onsubmit = () => {
   let mailingList = document.getElementById("mailing-list").checked;
   let linkedIn = document.getElementById("linked").value.trim();
   let formats = document.getElementById("email-format");
+  let job = document.getElementById("job").value.trim();
+  let company = document.getElementById("company").value.trim();
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

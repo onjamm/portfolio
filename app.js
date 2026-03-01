@@ -48,12 +48,15 @@ app.post("/submit-submission", (req, res) => {
     fname: req.body.fname,
     lname: req.body.lname,
     email: req.body.email,
+    job: req.body.job,
+    company: req.body.company,
     meet: req.body.meet,
     html: req.body.html,
     text: req.body.text,
     mailingList: req.body.mailingList,
     linkedIn: req.body.linkedIn,
     formats: req.body.formats,
+    message: req.body.message,
     timestamp: new Date(),
   };
 

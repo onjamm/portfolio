@@ -4,11 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Confirmation</title>
+    <link rel="stylesheet" href="/styles/confirmation.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="icon" href="/imgs/fav.png" />
   </head>
   <body>
     <%- include('partials/navbar') %>
+    <hr />
     <h1>Thank you for your submission!</h1>
-    <a href="/">Back to Contact Form</a>
+    <hr />
+    <div id="submission-details">
+      <h2>Submission Details:</h2>
+      <hr />
+      <p>Name: <%= submission.fname %> <%= submission.lname %></p>
+      <p>Meet: <%= submission.meet %></p>
+      <% if (submission.job) { %>
+        <p>Job Title: <%= submission.job %></p>
+      <% } %>
+      <% if (submission.company) { %>
+        <p>Company: <%= submission.company %></p>
+      <% } %>
+      <% if (submission.email) { %>
+        <p>Email: <%= submission.email %></p>
+      <% } %>
+      <% if (submission.html) { %>
+        <p>HTML: <%= submission.html %></p>
+      <% } %>
+      <% if (submission.text) { %>
+        <p>Text: <%= submission.text %></p>
+      <% } %>
+      <% if (submission.mailingList) { %>
+        <p>Mailing List: <%= submission.mailingList %></p>
+      <% } %>
+      <% if (submission.linkedIn) { %>
+        <p>LinkedIn: <%= submission.linkedIn %></p>
+      <% } %>
+      <% if (submission.formats) { %>
+        <p>Formats: <%= submission.formats %></p>
+      <% } %>
+      <% if (submission.message) { %>
+        <p>Message: <%= submission.message %></p>
+      <% } %>
+      <p>Submitted at: <%= submission.timestamp.toLocaleString() %></p>
+      <hr />
+      <a href="/">Go to Home Page</a>
+    </div>
   </body>
 </html>
