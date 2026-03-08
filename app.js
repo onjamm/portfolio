@@ -1,6 +1,11 @@
 // Import the express module
 import express from "express";
 
+import mysql2 from "mysql2";
+
+import dotenv from "dotenv";
+
+dotenv.config();
 // Create an instance of an Express application
 const app = express();
 
@@ -25,14 +30,25 @@ app.get("/", (req, res) => {
 });
 
 //admin route
-app.get("/admin", (req, res) => {
-  res.render("admin", { submissions });
+app.get("/admin", async (req, res) => {
+    try {
+        // Fetch all submissions from teh databse, newest first
+        const [submissions] = await pool.query("SELECT * FROM contacts ORDER BY timestamp DESC");
+        
+        //Render the admin page
+        res.render("admin", { submissions });
+
+
+    } catch (err) {
+        console.error("Database error: ", err);
+        res.status(500).send("Error loading submissions: " + err.message);
+    }
 });
 
 //conrfirmation route
-app.get("/thank-you", (req, res) => {
-  res.render("confirmation");
-});
+// app.get("/thank-you", (req, res) => {
+//   res.render("confirmation");
+// });
 
 //Contact form route
 app.get("/contact", (req, res) => {
@@ -42,28 +58,68 @@ app.get("/contact", (req, res) => {
 //Create a temp array to store the guestbook submissions
 const submissions = [];
 
+// Create a pool of connections
+const pool = mysql2.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
+}).promise();
+
+
+//Database test route
+app.get("/db-test", async (req, res) => {
+
+    try {
+        const submissions = await pool.query("SELECT * FROM contacts");
+        res.send(submissions[0]);
+    } catch (err) {
+        console.error("Database error: ", err);
+        res.status(500).send("Database error: " + err.message);
+    }
+});
+
 //Submit guesstbook route
-app.post("/submit-submission", (req, res) => {
-  const submission = {
-    fname: req.body.fname,
-    lname: req.body.lname,
-    email: req.body.email,
-    job: req.body.job,
-    company: req.body.company,
-    meet: req.body.meet,
-    html: req.body.html,
-    text: req.body.text,
-    mailingList: req.body.mailingList,
-    linkedIn: req.body.linkedIn,
-    formats: req.body.formats,
-    message: req.body.message,
-    timestamp: new Date(),
-  };
+app.post("/submit-submission", async (req, res) => {
+    try {
+        //Get form data from req.body
+        const submission = req.body;
 
-  //add submission object to submissions array
-  submissions.push(submission);
+        submission.mailingList = submission["mailing-list"] === "on" ? 1 : 0;
+        submission.linkedIn = submission["linked-in"] || null;
+        submission.format = submission["format"] || null;
 
-  res.render("confirmation", { submission });
+        console.log(submission);
+
+        //SQL INSERT query with placeholders to prevent sql injection
+        const sql = "INSERT INTO contacts(fname, lname, email, meet, job, company, linkedIn, message, mailingList, format, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        const params = [
+            submission.fname,
+            submission.lname,
+            submission.email,
+            submission.meet,
+            submission.job,
+            submission.company,
+            submission.linkedIn,
+            submission.message,
+            submission.mailingList,
+            submission.format,
+            submission.timestamp = new Date()
+        ];
+
+        //Execute the query and grab the primary key of the new row
+        const [result] = await pool.execute(sql, params);
+        console.log("New submission ID: ", result.insertId);
+
+        //Render confirmation page with the adoption data
+        res.render('confirmation', { submission});
+
+    } catch (err) {
+        console.error("Error saving submission: ", err);
+        res.status(500).send("Sorry, there was an error processing your submission. Please try again.");
+    }
 });
 
 //Start the server and listen on the specified port
