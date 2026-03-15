@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" href="/imgs/fav.png">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/portfolio.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/navbar') %>
+        <hr />
+    </header>
+    
+
+    <main>
+        <!-- <h1>Projects</h1> -->
+        <div class="projects-grid">
+            <div class="project-card">
+                <h2>Hot Pursuits</h2>
+                <img src="/imgs/hot-pursuit.gif" alt="a gif of a game I made along side a partner in our systems programming class, a Game Boy Advance Game.">
+                <p class="tech-stack">Docker, Butano, C++, LibreSprite</p>
+                <p>A partner and I developed this Game Boy Advance game in our systems programming class. I was responsible for a good portion of the implementation, and 
+                    iterations in testing different values. However, the lovely sprites were solely my partner's handiwork.   </p>
+                <a href="https://sabinmas.github.io/hot-pursuit/">Github Pages</a>
+            </div>
+
+            <div class="project-card">
+                <h2>Midterm</h2>
+                <img src="/imgs/midterm.png" alt="screenshot of my midterm project from my Web Dev fundamentals class, a vacation booking form ">
+                <p class="tech-stack">HTML, CSS, JavaScript, Node.js</p>
+                <p>This is an individual project from my Web Dev fundamentals class, a vacation booking form, that is responsive and visually appealing! We were offered a reference image to work from, and I treated it like a puzzle cover, and in the end I can confidently say this looks almost exactly like the reference image!</p>
+                <a href="https://github.com/onjamm/midterm305">Github Repo</a>
+            </div>
+
+            <div class="project-card">
+                <h2>Personal Portfolio</h2>
+                <img src="/imgs/portfolio.png" alt="a picture of my personal portfolio, my pride and joy project!" id="portfolio-img">
+                <p class="tech-stack">HTML, CSS, GitHub</p>
+                <p>This is a screenshot of my personal portfolio, that I spent countless hours building and perfecting! You can tell I have certain affinity for the neo-internet aesthetic. However, this was also a valuable project in creating a not only responsive piece of work, but one that is accessible for all!</p>
+                <a href="https://onjamm.github.io/PersonalPortfolio/">Github Pages</a>
+            </div>
+        </div>
+        
+    </main>
+    
+
+    
+</body>
+</html>

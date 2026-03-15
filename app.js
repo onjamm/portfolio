@@ -55,6 +55,11 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
+//Portfolio  route
+app.get("/portfolio", (req, res) => {
+  res.render("portfolio");
+});
+
 //Create a temp array to store the guestbook submissions
 const submissions = [];
 
