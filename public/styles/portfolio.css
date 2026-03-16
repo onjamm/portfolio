@@ -39,7 +39,7 @@ main {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -92,4 +92,10 @@ a {
 
 a:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+    body, main, header {
+        width: 95%;
+    }
 }

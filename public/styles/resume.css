@@ -127,4 +127,12 @@ li {
   #side-image img {
     display: none;
   }
+
+  #right a:last-child {
+    align-self: flex-start;
+  }
+  main, header {
+    width: 90%;
+  }
 }
+

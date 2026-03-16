@@ -4,6 +4,7 @@ body {
   padding: 1rem;
   max-width: 60vw;
   margin: 0 auto;
+  min-width: 490px;
 }
 #page-title {
   text-align: center;
@@ -24,4 +25,10 @@ a {
 }
 a:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 1000px) {
+    body, main {
+        max-width: 100%;
+    }
 }

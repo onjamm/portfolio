@@ -7,9 +7,11 @@
     <!-- Scripts -->
     <script src="//code.jquery.com/jquery-3.7.1.js"></script>
     <script src="//cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+    <script src="//cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
 
     <!-- Styles -->
     <link rel="stylesheet" href="//cdn.datatables.net/2.3.7/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js">
     <link rel="stylesheet" href="/styles/admin.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="icon" href="/imgs/fav.png" />
@@ -58,7 +60,9 @@
     <% } %>
     <script defer>
         $(document).ready(function () {
-            new DataTable('#order-table');
+            new DataTable('#order-table', {
+                responsive: true
+            });
         });
 
         //let table = new DataTable('#order-table');

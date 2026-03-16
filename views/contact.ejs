@@ -7,12 +7,21 @@
     <link rel="icon" href="/imgs/fav.png" />
     <link rel="stylesheet" type="text/css" href="styles/contact-styles.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
-    <script src="js/contact.js" defer></script>
+    <!-- <script src="js/contact.js" defer></script> -->
+    <script src="validation.js" defer></script>
   </head>
   <body>
-    <%- include('partials/navbar') %>
+    <header>
+        <%- include('partials/navbar') %>
+    </header>
     <main>
       <h1>Contact Form</h1>
+
+      <% if (typeof errors != 'undefined') { %>
+        <% errors.forEach(error => { %> 
+          <p><%=error%></p>
+        <% }); %>
+      <% } %>
 
       <form id="contact-form" action="/submit-submission" method="post">
         <fieldset class="row">

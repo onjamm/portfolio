@@ -5,6 +5,8 @@ import mysql2 from "mysql2";
 
 import dotenv from "dotenv";
 
+import {validateForm} from "./validation.js";
+
 dotenv.config();
 // Create an instance of an Express application
 const app = express();
@@ -52,7 +54,7 @@ app.get("/admin", async (req, res) => {
 
 //Contact form route
 app.get("/contact", (req, res) => {
-  res.render("contact");
+  res.render("contact", { errors: [] });
 });
 
 //Portfolio  route
@@ -91,8 +93,16 @@ app.post("/submit-submission", async (req, res) => {
         //Get form data from req.body
         const submission = req.body;
 
+        const valid = validateForm(submission);
+
+        if(!valid.isValid) {
+            console.log(valid);
+            res.render('contact', {errors: valid.errors});
+            return;
+        }
+
         submission.mailingList = submission["mailing-list"] === "on" ? 1 : 0;
-        submission.linkedIn = submission["linked-in"] || null;
+        submission.linkedIn = submission["linked"] || null;
         submission.format = submission["format"] || null;
 
         console.log(submission);
