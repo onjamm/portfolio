@@ -16,7 +16,7 @@ export function validateForm(data) {
     }
 
     //Validate how we met
-    const validMeetOptions = ['linkedin', 'school', 'MinT', 'event', 'other'];
+    const validMeetOptions = ['LinkedIn', 'School', 'MinT', 'Event', 'Other'];
     
     if(!validMeetOptions.includes(data.meet)) {
         errors.push("Please select a valid 'How we met' option!");
